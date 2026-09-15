@@ -473,7 +473,7 @@ for (const button of document.querySelectorAll("[data-example]")) {
   button.addEventListener("click", () => {
     els.raw.value = button.dataset.example;
     els.raw.focus();
-    renderPreview();
+    els.raw.dispatchEvent(new Event("input", { bubbles: true }));
   });
 }
 
