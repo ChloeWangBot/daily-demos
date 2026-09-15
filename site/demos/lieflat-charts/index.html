@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lieflat Gallery · Daily Demos</title>
+    <meta
+      name="description"
+      content="An original monochrome editorial chart gallery inspired by Lieflat Charts: hairlines, countable units, and two reading speeds."
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← Gallery</a>
+      <div class="titleblock">
+        <p class="kicker">Daily demo · 2026-09-15</p>
+        <h1>Lieflat Gallery</h1>
+      </div>
+      <div class="speed" role="group" aria-label="Reading speed">
+        <button type="button" class="is-on" data-speed="slow">Slow read</button>
+        <button type="button" data-speed="fast">Fast read</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="lede">
+          Lieflat Charts treats a chart like a newspaper page: hairlines instead of
+          chrome, real units instead of decoration, and two reading speeds —
+          linger on every record, or take the ranking in a glance. This page is an
+          original, static sketch of that language. It does not copy the skill
+          files.
+        </p>
+        <p class="cite">
+          Inspired by
+          <a href="https://github.com/larashero3-dotcom/lieflat-charts">larashero3-dotcom/lieflat-charts</a>
+          and the
+          <a href="https://x.com/Zhiyu333/status/2094719194302706136">X bookmark</a>
+          that pointed here. The ledger below is constructed for this gallery.
+        </p>
+      </section>
+
+      <section class="desk">
+        <div class="plates">
+          <figure class="plate" data-plate="mornings">
+            <figcaption>
+              <span class="fig">Fig. 01</span>
+              <h2>Fourteen mornings</h2>
+              <p data-caption-mornings>One hairline is one day. Each dot is a morning count.</p>
+            </figcaption>
+            <div class="frame" data-chart="mornings" role="img" aria-labelledby="mornings-live"></div>
+          </figure>
+
+          <figure class="plate" data-plate="units">
+            <figcaption>
+              <span class="fig">Fig. 02</span>
+              <h2>One bookmark, one tick</h2>
+              <p>Forty-eight visualization-adjacent bookmarks. A filled tick earned a demo.</p>
+            </figcaption>
+            <div class="frame" data-chart="units"></div>
+          </figure>
+
+          <figure class="plate" data-plate="rank">
+            <figcaption>
+              <span class="fig">Fig. 03</span>
+              <h2>What earned a demo</h2>
+              <p>Six families, ranked. Length is bookmarks; the dark run is the pick.</p>
+            </figcaption>
+            <div class="frame" data-chart="rank"></div>
+          </figure>
+        </div>
+
+        <aside class="readout" aria-live="polite">
+          <p class="fig">Live note</p>
+          <h2 data-note-title>Select a morning</h2>
+          <p class="stat" data-note-stat>Hover a dot, a tick, or a row.</p>
+          <p data-note-body>
+            Slow read keeps every record on the page. Fast read pre-aggregates the
+            same ledger into a ranking you can finish in a few seconds.
+          </p>
+          <dl class="meta">
+            <div>
+              <dt>Bookmarks</dt>
+              <dd data-total-saved>—</dd>
+            </div>
+            <div>
+              <dt>Demos</dt>
+              <dd data-total-demos>—</dd>
+            </div>
+            <div>
+              <dt>Reading</dt>
+              <dd data-speed-label>Slow</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Original handwritten SVGs. Visual grammar borrowed in spirit from
+        Lieflat Charts (mono editorial, countable units, Lupi vs Glance) —
+        not a port of <code>SKILL.md</code> or the upstream templates.
+      </p>
+      <p>
+        <a href="https://github.com/larashero3-dotcom/lieflat-charts">Upstream GitHub</a>
+        ·
+        <a href="https://github.com/ChloeWangBot/daily-demos">daily-demos</a>
+      </p>
+    </footer>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

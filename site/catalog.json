@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "lieflat-charts",
+      "title": "Lieflat Gallery",
+      "date": "2026-09-15",
+      "summary": "Hover a constructed overnight ledger drawn as monochrome editorial SVGs: hairlines, countable ticks, and a slow/fast reading toggle.",
+      "tags": ["charts", "editorial", "svg"],
+      "source": {
+        "github": "https://github.com/larashero3-dotcom/lieflat-charts",
+        "note": "Inspired by Lieflat Charts' mono editorial language (hairlines, real units, Lupi vs Glance) from the X bookmark — original gallery, not a skill-file port."
+      }
+    },
+    {
       "slug": "pipeline-studio",
       "title": "Pipeline Studio",
       "date": "2026-09-15",
