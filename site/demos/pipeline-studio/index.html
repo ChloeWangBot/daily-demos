@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pipeline Studio · Daily Demos</title>
+    <meta
+      name="description"
+      content="Interactive studio for the daily demo pipeline: bookmark, pick a GitHub project, dispatch an agent, mint a morning preview link."
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← Gallery</a>
+      <div class="titleblock">
+        <p class="kicker">Sample demo · 2026-09-15</p>
+        <h1>Pipeline Studio</h1>
+      </div>
+      <button type="button" class="ghost" data-reset>Reset day</button>
+    </header>
+
+    <main>
+      <section class="rail" aria-label="Pipeline stages">
+        <ol class="steps" data-steps>
+          <li data-step="bookmark" class="is-current"><b>01</b> Bookmark</li>
+          <li data-step="project"><b>02</b> Project</li>
+          <li data-step="agent"><b>03</b> Agent</li>
+          <li data-step="preview"><b>04</b> Preview</li>
+          <li data-step="morning"><b>05</b> Morning</li>
+        </ol>
+      </section>
+
+      <section class="desk">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Overnight bookmarks</h2>
+            <p>Select the GitHub project that earned a demo.</p>
+          </div>
+          <div class="bookmarks" data-bookmarks></div>
+          <label class="tone">
+            <span>Agent tone</span>
+            <select data-tone>
+              <option value="editorial">Editorial morning paper</option>
+              <option value="studio">Dark control room</option>
+              <option value="playful">Playful instrument</option>
+            </select>
+          </label>
+          <div class="actions">
+            <button type="button" class="primary" data-dispatch disabled>Dispatch Cursor Agent</button>
+            <p class="hint" data-hint>Pick a bookmark to arm the agent.</p>
+          </div>
+        </div>
+
+        <div class="panel console-panel">
+          <div class="panel-head">
+            <h2>Agent console</h2>
+            <p data-console-meta>Idle · waiting for a project</p>
+          </div>
+          <pre class="console" data-console tabindex="0"></pre>
+        </div>
+
+        <aside class="panel result">
+          <div class="panel-head">
+            <h2>Morning card</h2>
+            <p>The preview URL is the shareable artifact.</p>
+          </div>
+          <article class="card" data-card>
+            <p class="muted">Nothing printed yet.</p>
+          </article>
+          <div class="link-row">
+            <input data-link readonly placeholder="Preview URL appears here" />
+            <button type="button" class="ghost" data-copy disabled>Copy</button>
+          </div>
+        </aside>
+      </section>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

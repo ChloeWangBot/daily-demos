@@ -1,0 +1,28 @@
+:root {
+  --paper: #f3eee4;
+  --paper-2: #e8e1d3;
+  --ink: #16130f;
+  --ink-soft: #3c362e;
+  --mute: #7a7266;
+  --rule: rgba(22, 19, 15, 0.12);
+  --spot: #c23b22;
+  --gold: #b47a1f;
+  --pine: #2f5d4a;
+  --shadow: 0 18px 40px rgba(22, 19, 15, 0.08);
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+  --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", ui-monospace, Menlo, monospace;
+  --max: 1080px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #12100d;
+    --paper-2: #1c1914;
+    --ink: #f4efe6;
+    --ink-soft: #d8d0c3;
+    --mute: #9a9184;
+    --rule: rgba(244, 239, 230, 0.12);
+    --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  }
+}

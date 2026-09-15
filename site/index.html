@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daily Demos</title>
+    <meta
+      name="description"
+      content="Bookmark-driven daily demos: X to GitHub to Cursor Agent to Cloudflare Pages preview."
+    />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles/home.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="masthead-inner">
+        <a class="brand" href="./">Daily Demos</a>
+        <div class="edition">ChloeWangBot · morning edition</div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="hero">
+        <p class="kicker">X → GitHub → Cursor → Pages → link</p>
+        <h1>One bookmark. One demo. One morning link.</h1>
+        <p class="lede">
+          Overnight X bookmarks become a GitHub pick. A Cursor Agent ships a
+          self-contained demo. Cloudflare Pages prints a preview. That URL is
+          breakfast.
+        </p>
+
+        <div class="pipeline" aria-label="Daily demo pipeline">
+          <div class="stage"><b>01 Bookmark</b><span>Save the interesting posts on X.</span></div>
+          <div class="stage"><b>02 Project</b><span>Pick one GitHub repo worth showing.</span></div>
+          <div class="stage"><b>03 Agent</b><span>Cursor builds today’s demo on a dated branch.</span></div>
+          <div class="stage"><b>04 Preview</b><span>Cloudflare Pages deploys a unique URL.</span></div>
+          <div class="stage"><b>05 Morning</b><span>Share the preview. Merge later.</span></div>
+        </div>
+      </section>
+
+      <div class="section-head">
+        <h2>Gallery</h2>
+        <p data-demo-count>Loading</p>
+      </div>
+      <section class="grid" data-demo-grid>
+        <div class="empty">Loading catalog…</div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>Hosted on Cloudflare Pages · production branch <code>main</code></span>
+        <a href="https://github.com/ChloeWangBot/daily-demos">github.com/ChloeWangBot/daily-demos</a>
+      </div>
+    </footer>
+    <script type="module" src="./scripts/home.js"></script>
+  </body>
+</html>

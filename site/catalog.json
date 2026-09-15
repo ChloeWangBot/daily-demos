@@ -1,0 +1,17 @@
+{
+  "title": "Daily Demos",
+  "tagline": "One GitHub bookmark. One agent. One morning link.",
+  "demos": [
+    {
+      "slug": "pipeline-studio",
+      "title": "Pipeline Studio",
+      "date": "2026-09-15",
+      "summary": "Walk the morning pipeline: pick a bookmarked GitHub project, dispatch a Cursor agent, and mint a Cloudflare preview link.",
+      "tags": ["pipeline", "interactive", "host"],
+      "source": {
+        "github": "https://github.com/ChloeWangBot/daily-demos",
+        "note": "The host explaining itself"
+      }
+    }
+  ]
+}

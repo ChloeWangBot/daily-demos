@@ -1,0 +1,13 @@
+{
+  "name": "daily-demos",
+  "private": true,
+  "type": "module",
+  "description": "Bookmark-driven daily demos hosted on Cloudflare Pages",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
