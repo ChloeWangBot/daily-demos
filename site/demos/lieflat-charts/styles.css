@@ -159,6 +159,7 @@ figcaption p,
 
 .frame {
   min-height: 220px;
+  padding-bottom: 8px;
 }
 
 .frame svg {

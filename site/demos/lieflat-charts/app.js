@@ -168,6 +168,14 @@ function drawMornings() {
     });
     group.append(
       svgEl("circle", {
+        class: "hit",
+        cx: x(index),
+        cy: y(day.saved),
+        r: 14,
+        fill: "transparent",
+      }),
+      svgEl("circle", {
+        class: "dot",
         cx: x(index),
         cy: y(day.saved),
         r: slow ? 3.2 : 2.2,
@@ -228,16 +236,29 @@ function drawUnits() {
     );
 
     if (slow) {
+      const row = svgEl("g", {
+        class: "row",
+        tabindex: "0",
+        role: "button",
+        "aria-label": `${family.name}: ${family.bookmarks} bookmarks, ${family.demos} demos`,
+        "data-kind": "family",
+        "data-id": family.id,
+      });
+      row.append(
+        svgEl("rect", {
+          class: "hit",
+          x: 0,
+          y: y - 4,
+          width,
+          height: size + 8,
+          fill: "transparent",
+        }),
+      );
       for (let i = 0; i < family.bookmarks; i += 1) {
         const filled = i < family.demos;
-        svg.append(
+        row.append(
           svgEl("rect", {
             class: "tick",
-            tabindex: i === 0 ? "0" : undefined,
-            role: i === 0 ? "button" : undefined,
-            "aria-label": i === 0 ? `${family.name}: ${family.bookmarks} bookmarks, ${family.demos} demos` : undefined,
-            "data-kind": "family",
-            "data-id": family.id,
             x: labelW + i * (size + gap),
             y,
             width: size,
@@ -248,6 +269,7 @@ function drawUnits() {
           }),
         );
       }
+      svg.append(row);
     } else {
       const max = Math.max(...families.map((item) => item.bookmarks));
       const track = cols * (size + gap) - gap;
@@ -260,6 +282,14 @@ function drawUnits() {
         "data-id": family.id,
       });
       bar.append(
+        svgEl("rect", {
+          class: "hit",
+          x: 0,
+          y: y - 4,
+          width,
+          height: 18,
+          fill: "transparent",
+        }),
         svgEl("rect", {
           x: labelW,
           y: y + 3,
@@ -309,6 +339,14 @@ function drawRank() {
       "data-id": family.id,
     });
     group.append(
+      svgEl("rect", {
+        class: "hit",
+        x: 0,
+        y: y - 6,
+        width,
+        height: rowH,
+        fill: "transparent",
+      }),
       svgEl("text", {
         class: "chart-label",
         x: 0,
@@ -369,7 +407,7 @@ function paintSelection() {
     guide.setAttribute("opacity", "0");
   }
 
-  els.mornings.querySelectorAll(".mark circle").forEach((circle) => {
+  els.mornings.querySelectorAll(".mark circle.dot").forEach((circle) => {
     const on = circle.parentNode.dataset.id === selected.id && selected.kind === "morning";
     circle.setAttribute("r", on ? "5.5" : speed === "slow" ? "3.2" : "2.2");
   });
@@ -388,13 +426,11 @@ function paintSelection() {
     fill.setAttribute("fill", on || speed === "fast" ? "#141414" : "#6a6a6a");
   });
 
-  els.units.querySelectorAll("[data-kind]").forEach((node) => {
-    if (speed !== "slow") return;
-    if (node.dataset.id === selected.id && selected.kind === "family") {
-      node.setAttribute("stroke-width", "1.6");
-    } else if (node.getAttribute("fill") !== "#141414") {
-      node.setAttribute("stroke-width", "1");
-    }
+  els.units.querySelectorAll(".row").forEach((node) => {
+    const on = selected.kind === "family" && node.dataset.id === selected.id;
+    node.querySelectorAll(".tick").forEach((tick) => {
+      tick.setAttribute("stroke-width", on ? "1.7" : "1");
+    });
   });
 }
 
