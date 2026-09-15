@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "artemis-task-lab",
+      "title": "Artemis Task Lab",
+      "date": "2026-09-16",
+      "summary": "选一条自然语言任务，用 Flash 或 Pro 档案干跑模拟手机自动化，并看到步骤与完成报告。",
+      "tags": ["mobile", "automation", "interactive"],
+      "source": {
+        "github": "https://github.com/google/artemis",
+        "note": "X 书签指向 Google ARTEMIS：自然语言驱动的 Android 自动化，做成可点的前端干跑台。"
+      }
+    },
+    {
       "slug": "pipeline-studio",
       "title": "Pipeline Studio",
       "date": "2026-09-15",
