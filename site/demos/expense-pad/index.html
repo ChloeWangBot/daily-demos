@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>记账便签 · Daily Demos</title>
+    <meta
+      name="description"
+      content="用一句话记下花销，解析金额、类目、备注和时间，写入今日账本。可导出 CSV，也可预览发给记账管家的报文。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 画廊</a>
+      <p class="kicker">快捷指令工作流 · <time data-today></time></p>
+    </header>
+
+    <main>
+      <section class="capture" aria-labelledby="pad-title">
+        <h1 id="pad-title">记账便签</h1>
+        <p class="purpose">一句话记下今天的开销。</p>
+
+        <form class="pad" data-form>
+          <div class="channels" role="radiogroup" aria-label="提交方式">
+            <label class="chip is-on">
+              <input type="radio" name="channel" value="text" checked />
+              文字
+            </label>
+            <label class="chip">
+              <input type="radio" name="channel" value="screenshot" />
+              截图
+            </label>
+            <label class="chip">
+              <input type="radio" name="channel" value="audio" />
+              录音
+            </label>
+          </div>
+
+          <label class="field">
+            <span class="sr-only">花销备注</span>
+            <textarea
+              data-raw
+              rows="2"
+              required
+              placeholder="例如：午饭 42 美团"
+              autocomplete="off"
+            ></textarea>
+          </label>
+
+          <div class="attach" data-attach hidden>
+            <label class="file">
+              <input data-file type="file" accept="image/*" />
+              <span data-file-label>附一张收据截图（只留文件名，不上传）</span>
+            </label>
+          </div>
+
+          <div class="preview" data-preview aria-live="polite">
+            先写一句花销，这边会拆出金额、类目、备注和时间。
+          </div>
+
+          <div class="primary-row">
+            <button type="submit" class="primary" data-save>记一笔</button>
+            <button type="button" class="ghost" data-webhook>发给记账管家</button>
+          </div>
+        </form>
+
+        <p class="hints">
+          试试
+          <button type="button" class="example" data-example="午饭 42 美团">午饭 42 美团</button>
+          <button type="button" class="example" data-example="地铁 6">地铁 6</button>
+          <button type="button" class="example" data-example="昨天超市买菜 86.5 盒马">昨天超市买菜 86.5</button>
+        </p>
+      </section>
+
+      <section class="ledger" data-ledger hidden>
+        <div class="ledger-head">
+          <div>
+            <h2>今日账本</h2>
+            <p data-ledger-meta>还没有记录。</p>
+          </div>
+          <div class="ledger-actions">
+            <button type="button" class="ghost" data-export>导出 CSV</button>
+            <button type="button" class="ghost danger" data-clear>清空今天</button>
+          </div>
+        </div>
+
+        <div class="totals" data-totals></div>
+        <ul class="entries" data-entries></ul>
+      </section>
+    </main>
+
+    <dialog class="sheet" data-sheet>
+      <form method="dialog" class="sheet-inner">
+        <div class="sheet-head">
+          <div>
+            <h2>发给记账管家</h2>
+            <p>模拟 Webhook 报文，不会发到任何服务器。</p>
+          </div>
+          <button type="submit" class="ghost" value="close">关闭</button>
+        </div>
+        <p class="endpoint" data-endpoint></p>
+        <pre data-payload></pre>
+        <button type="button" class="ghost" data-copy-payload>复制报文</button>
+      </form>
+    </dialog>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
