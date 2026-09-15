@@ -126,12 +126,12 @@ function inferNote(raw, amount) {
   let note = raw
     .replace(/(?:花了|付了|消费|一共|共)/g, " ")
     .replace(/¥|￥/g, " ")
-    .replace(/\d{1,2}[:：]\d{2}/g, " ")
+    .replace(/\d{1,2}[:：](\d{2})/g, " ")
     .replace(/(?:昨天|前天|今天|早上|上午|中午|下午|晚上|夜里)/g, " ")
+    .replace(/\d+(?:\.\d{1,2})?\s*(?:元|块钱|块|rmb)/gi, " ")
     .replace(String(amount), " ")
-    .replace(/\d+(?:\.\d{1,2})?\s*(?:元|块钱|块|rmb)?/gi, " ")
-    .replace(/(?:元|块钱|块)/g, " ")
-    .replace(/[+＋\-]/g, " ")
+    .replace(/\d+(?:\.\d{1,2})?/g, " ")
+    .replace(/[+＋]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
   return note || "未填写备注";
