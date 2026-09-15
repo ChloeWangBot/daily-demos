@@ -13,6 +13,7 @@ const required = [
   "index.html",
   "catalog.json",
   "demos/pipeline-studio/index.html",
+  "demos/expense-pad/index.html",
 ];
 
 for (const file of required) {

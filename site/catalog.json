@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "expense-pad",
+      "title": "记账便签",
+      "date": "2026-09-15",
+      "summary": "用一句话记下花销，解析金额/类目后写入今日账本，可导出 CSV，也可预览发给记账管家的报文。",
+      "tags": ["expense", "ledger", "shortcuts", "chinese"],
+      "source": {
+        "github": "https://github.com/ChloeWangBot/daily-demos",
+        "note": "From @cgnot996 Shortcuts + Grok Bot expense workflow: text / screenshot / audio → ledger bot"
+      }
+    },
+    {
       "slug": "pipeline-studio",
       "title": "Pipeline Studio",
       "date": "2026-09-15",
