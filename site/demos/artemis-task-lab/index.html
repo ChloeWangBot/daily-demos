@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Artemis Task Lab · Daily Demos</title>
+    <meta
+      name="description"
+      content="把自然语言任务变成手机自动化试跑：选任务、切 Flash/Pro、看步骤和结果。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← Gallery</a>
+      <div class="titleblock">
+        <p class="kicker">ARTEMIS 概念模拟 · 2026-09-16</p>
+        <h1>Artemis Task Lab</h1>
+      </div>
+      <button type="button" class="ghost" data-reset>重置</button>
+    </header>
+
+    <p class="purpose">
+      把一句自然语言指令变成手机自动化干跑：选任务、切 Flash / Pro，看步骤、假屏幕和完成报告。
+    </p>
+
+    <main class="desk">
+      <section class="panel bench" aria-label="任务台">
+        <div class="panel-head">
+          <h2>任务台</h2>
+          <p>选一个样例，或改写提示词。不连真机。</p>
+        </div>
+
+        <div class="chips" data-chips role="list"></div>
+
+        <label class="field">
+          <span>任务提示词</span>
+          <textarea data-prompt rows="4" spellcheck="false"></textarea>
+        </label>
+
+        <fieldset class="profile">
+          <legend>执行档案</legend>
+          <label>
+            <input type="radio" name="profile" value="flash" checked />
+            <span>
+              <b>Flash</b>
+              反应式，约 3–5 秒/步
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="profile" value="pro" />
+            <span>
+              <b>Pro</b>
+              先规划，每步核验
+            </span>
+          </label>
+        </fieldset>
+
+        <details class="ready" open>
+          <summary>USB 调试就绪清单</summary>
+          <p class="hint">模拟器不需要真机。勾选会记在本机，方便养成检查习惯。</p>
+          <ul class="checks" data-checks></ul>
+        </details>
+
+        <div class="actions">
+          <button type="button" class="primary" data-run>开始试跑</button>
+          <button type="button" class="ghost" data-stop disabled>停止</button>
+          <p class="hint" data-hint>选好任务后点开始。Flash 更快，Pro 会先出计划。</p>
+        </div>
+      </section>
+
+      <section class="stage" aria-label="模拟手机">
+        <div class="phone" data-phone>
+          <div class="bezel">
+            <div class="notch" aria-hidden="true"></div>
+            <div class="status">
+              <span data-clock>09:16</span>
+              <span class="status-right">5G · 86%</span>
+            </div>
+            <div class="screen" data-screen></div>
+            <div class="gesture" aria-hidden="true"></div>
+          </div>
+        </div>
+        <p class="phone-cap" data-phone-cap>待命 · 主屏幕</p>
+      </section>
+
+      <section class="panel runner" aria-label="试跑记录">
+        <div class="panel-head">
+          <h2>试跑记录</h2>
+          <p data-runner-meta>空闲 · 等待开始</p>
+        </div>
+
+        <div class="plan" data-plan hidden>
+          <h3>Pro 计划</h3>
+          <ol data-plan-list></ol>
+        </div>
+
+        <ol class="log" data-log aria-live="polite"></ol>
+
+        <article class="report" data-report>
+          <p class="muted">跑完后这里会出现成功状态、步数、档案和 trace id。</p>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
