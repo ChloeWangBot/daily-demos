@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>闲鱼虚拟产品上架草稿器 · Daily Demos</title>
+    <meta
+      name="description"
+      content="填写标题、价格、卖点和网盘占位，30 秒内生成可复制的闲鱼虚拟货上架文案，并勾一份本地 dry-run 清单。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 画廊</a>
+      <p class="kicker">本地草稿 · 不连闲鱼 / 百度网盘</p>
+    </header>
+
+    <main>
+      <section class="intro">
+        <h1>闲鱼虚拟产品上架草稿器</h1>
+        <p class="purpose">把百度网盘虚拟货，整理成可复制的闲鱼上架文案和本地检查清单。</p>
+      </section>
+
+      <div class="desk">
+        <section class="panel form-panel" aria-labelledby="form-title">
+          <div class="panel-head">
+            <h2 id="form-title">填写草稿</h2>
+            <p>点一条示例即可填满表单，再生成文案。</p>
+          </div>
+
+          <div class="examples" role="group" aria-label="示例商品">
+            <button type="button" class="chip" data-example="kaoyan">考研英语资料</button>
+            <button type="button" class="chip" data-example="prompts">提示词包</button>
+            <button type="button" class="chip" data-example="excel">表格模板</button>
+          </div>
+
+          <form class="form" data-form>
+            <label class="field">
+              <span>商品标题</span>
+              <input
+                name="title"
+                type="text"
+                required
+                maxlength="60"
+                autocomplete="off"
+                placeholder="例如：考研英语近十年真题精讲"
+              />
+            </label>
+
+            <div class="row">
+              <label class="field">
+                <span>价格（元）</span>
+                <input
+                  name="price"
+                  type="number"
+                  required
+                  min="0"
+                  step="0.01"
+                  inputmode="decimal"
+                  placeholder="19.9"
+                />
+              </label>
+              <label class="field">
+                <span>品类 / 标签</span>
+                <input
+                  name="category"
+                  type="text"
+                  required
+                  maxlength="40"
+                  autocomplete="off"
+                  placeholder="学习资料 / 电子书"
+                />
+              </label>
+            </div>
+
+            <label class="field">
+              <span>网盘链接（可假）</span>
+              <input
+                name="link"
+                type="text"
+                required
+                autocomplete="off"
+                placeholder="https://pan.baidu.com/s/demo-xxxx"
+              />
+            </label>
+
+            <label class="field">
+              <span>卖点</span>
+              <textarea
+                name="points"
+                rows="4"
+                required
+                placeholder="一行一条。例如：近十年真题 PDF 可检索"
+              ></textarea>
+            </label>
+
+            <label class="field">
+              <span>售后说明 <em>选填</em></span>
+              <textarea
+                name="aftersale"
+                rows="2"
+                placeholder="例如：链接失效 24 小时内重发。虚拟商品发出后不退款。"
+              ></textarea>
+            </label>
+
+            <p class="form-error" data-error hidden></p>
+
+            <button type="submit" class="primary" data-generate>生成上架文案</button>
+            <p class="fine">只在浏览器里拼文案。不会登录闲鱼，也不会请求百度网盘。</p>
+          </form>
+        </section>
+
+        <section class="panel result-panel" aria-labelledby="result-title">
+          <div class="panel-head result-head">
+            <div>
+              <h2 id="result-title">上架文案</h2>
+              <p data-result-meta>填完左侧，点「生成上架文案」。</p>
+            </div>
+            <button type="button" class="ghost" data-copy disabled>复制文案</button>
+          </div>
+
+          <pre class="listing" data-listing tabindex="0">点一条示例，再生成。标题、价格、卖点和网盘占位会出现在这里，可直接粘贴。</pre>
+
+          <div class="checklist-wrap">
+            <div class="checklist-head">
+              <h3>本地 dry-run 清单</h3>
+              <button type="button" class="text-btn" data-reset-checks>重置勾选</button>
+            </div>
+            <p class="hint">勾选会记在本机。假跑步骤不会触发任何 MCP。</p>
+            <ul class="checks" data-checks></ul>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
