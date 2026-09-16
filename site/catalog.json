@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "xianyu-listing-draft",
+      "title": "闲鱼虚拟产品上架草稿器",
+      "date": "2026-09-17",
+      "summary": "填标题、价格、卖点和网盘占位，30 秒内得到可复制的闲鱼上架文案，并勾一份本地 dry-run 清单。",
+      "tags": ["xianyu", "listing", "chinese", "dry-run"],
+      "source": {
+        "github": "https://github.com/ChloeWangBot/daily-demos",
+        "note": "Inspired by @jinli_lg 百度网盘→闲鱼 virtual-product workflow; local draft + checklist only"
+      }
+    },
+    {
       "slug": "pipeline-studio",
       "title": "Pipeline Studio",
       "date": "2026-09-15",
