@@ -209,18 +209,36 @@ form.addEventListener("submit", (event) => {
   listingEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
 });
 
+function fallbackCopy(text) {
+  const area = document.createElement("textarea");
+  area.value = text;
+  area.setAttribute("readonly", "");
+  area.style.position = "fixed";
+  area.style.left = "-9999px";
+  document.body.appendChild(area);
+  area.select();
+  document.execCommand("copy");
+  area.remove();
+}
+
+async function copyListing(text) {
+  if (navigator.clipboard?.writeText) {
+    const write = navigator.clipboard.writeText(text);
+    const timeout = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error("clipboard-timeout")), 350);
+    });
+    await Promise.race([write, timeout]);
+    return;
+  }
+  throw new Error("no-clipboard");
+}
+
 copyBtn.addEventListener("click", async () => {
   if (!listingText) return;
   try {
-    await navigator.clipboard.writeText(listingText);
+    await copyListing(listingText);
   } catch {
-    const range = document.createRange();
-    range.selectNodeContents(listingEl);
-    const selection = getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-    document.execCommand("copy");
-    selection.removeAllRanges();
+    fallbackCopy(listingText);
   }
   copyBtn.textContent = "已复制";
   copyBtn.classList.add("is-copied");
