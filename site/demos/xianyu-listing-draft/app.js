@@ -69,6 +69,7 @@ const checksEl = document.querySelector("[data-checks]");
 const resetBtn = document.querySelector("[data-reset-checks]");
 
 let listingText = "";
+let copyResetTimer = 0;
 
 function loadChecks() {
   try {
@@ -234,18 +235,19 @@ async function copyListing(text) {
 }
 
 copyBtn.addEventListener("click", async () => {
-  if (!listingText) return;
+  if (!listingText || copyBtn.disabled) return;
+  copyBtn.textContent = "已复制";
+  copyBtn.classList.add("is-copied");
   try {
     await copyListing(listingText);
   } catch {
     fallbackCopy(listingText);
   }
-  copyBtn.textContent = "已复制";
-  copyBtn.classList.add("is-copied");
-  setTimeout(() => {
+  window.clearTimeout(copyResetTimer);
+  copyResetTimer = window.setTimeout(() => {
     copyBtn.textContent = "复制文案";
     copyBtn.classList.remove("is-copied");
-  }, 1600);
+  }, 2400);
 });
 
 checksEl.addEventListener("change", (event) => {
