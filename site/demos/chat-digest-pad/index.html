@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>聊天纪要垫 · Daily Demos</title>
+    <meta
+      name="description"
+      content="粘贴微信聊天记录，本地规则立刻抽出待办、决策、@提及和待跟进问题。无需 API。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 返回画廊</a>
+      <div class="brand">
+        <p class="kicker">本地工具 · 2026-09-18</p>
+        <h1>聊天纪要垫</h1>
+      </div>
+      <p class="badge" title="规则在浏览器里跑，不上传聊天记录">本地规则提取，非 AI</p>
+    </header>
+
+    <main>
+      <p class="purpose">粘贴微信聊天记录，秒出待办与决策</p>
+
+      <div class="desk">
+        <section class="panel input-panel" aria-labelledby="paste-title">
+          <div class="panel-head">
+            <h2 id="paste-title">聊天原文</h2>
+            <p>支持「姓名 + 时间」或「姓名：」格式。已预填示例，可直接提取。</p>
+          </div>
+          <label class="sr-only" for="chat-input">粘贴微信聊天记录</label>
+          <textarea
+            id="chat-input"
+            rows="14"
+            spellcheck="false"
+            placeholder="把群聊或私聊记录粘到这里…"
+          ></textarea>
+          <div class="actions">
+            <button type="button" class="primary" id="btn-extract">提取要点</button>
+            <button type="button" class="ghost" id="btn-sample">填入示例</button>
+            <button type="button" class="ghost" id="btn-clear">清空</button>
+          </div>
+          <p class="hint" id="input-hint">快捷键：Ctrl / ⌘ + Enter 立即提取</p>
+        </section>
+
+        <section class="panel result-panel" aria-labelledby="result-title" aria-live="polite">
+          <div class="panel-head">
+            <h2 id="result-title">提取结果</h2>
+            <p id="result-meta">点「提取要点」即可，约 30 秒看完四类清单。</p>
+          </div>
+          <div class="result-actions">
+            <button type="button" class="ghost" id="btn-copy" disabled>一键复制 Markdown</button>
+            <button type="button" class="ghost" id="btn-download" disabled>下载 .md</button>
+          </div>
+          <div id="result-empty" class="empty">
+            结果会出现在这里：待办、决策、提及的人、待跟进问题。
+          </div>
+          <div id="result-board" class="board" hidden></div>
+        </section>
+      </div>
+    </main>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
