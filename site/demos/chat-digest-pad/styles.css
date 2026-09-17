@@ -8,8 +8,8 @@
   --warn: var(--gold);
   --ask: #3b5f8a;
   --todo: var(--spot);
-  --font-ui: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei",
-    var(--font-sans);
+  --font-ui: "Noto Sans SC", "Noto Sans CJK SC", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", var(--font-sans);
 }
 
 * {
