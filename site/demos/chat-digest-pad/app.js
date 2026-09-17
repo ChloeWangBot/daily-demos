@@ -288,7 +288,7 @@ function showToast(message) {
   clearTimeout(showToast.timer);
   showToast.timer = setTimeout(() => {
     els.toast.hidden = true;
-  }, 1800);
+  }, 2400);
 }
 
 function runExtract() {

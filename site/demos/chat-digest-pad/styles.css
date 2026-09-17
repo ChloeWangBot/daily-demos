@@ -269,6 +269,11 @@ textarea:focus,
   accent-color: var(--ok);
 }
 
+.item:has(input:checked) span {
+  color: var(--mute);
+  text-decoration: line-through;
+}
+
 .who {
   display: inline-block;
   margin-right: 6px;
