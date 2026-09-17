@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "chat-digest-pad",
+      "title": "聊天纪要垫",
+      "date": "2026-09-18",
+      "summary": "粘贴微信聊天记录，立刻抽出待办、决策、@提及和待跟进问题，并可复制或下载 Markdown 清单。",
+      "tags": ["wechat", "checklist", "local"],
+      "source": {
+        "github": "https://github.com/qzz0518/Dukou",
+        "note": "Dukou forwards WeChat history to AI on a Mac; this pad extracts locally from pasted chat, no API keys."
+      }
+    },
+    {
       "slug": "pipeline-studio",
       "title": "Pipeline Studio",
       "date": "2026-09-15",
