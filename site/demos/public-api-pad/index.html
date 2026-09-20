@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN" translate="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>公开 API 速查垫 · Daily Demos</title>
+    <meta
+      name="description"
+      content="按分类搜公开 API，复制起步请求片段。本地精选样例，不请求外网、不需要 API Key。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 返回画廊</a>
+      <div class="brand">
+        <p class="kicker">本地工具 · 2026-09-21</p>
+        <h1>公开 API 速查垫</h1>
+      </div>
+      <p class="badge">静态样例 · 不发外网</p>
+    </header>
+
+    <main>
+      <p class="purpose">按分类搜公开 API，复制起步请求片段</p>
+
+      <section class="panel" aria-labelledby="search-title">
+        <div class="panel-head">
+          <h2 id="search-title">检索</h2>
+          <p>输入名称或用途关键词，或点下方预置条件立刻出结果。</p>
+        </div>
+
+        <form class="search-row" id="search-form">
+          <label class="sr-only" for="q">搜索公开 API</label>
+          <input
+            id="q"
+            name="q"
+            type="search"
+            placeholder="例如：天气、比特币、地理编码…"
+            autocomplete="off"
+            enterkeyhint="search"
+          />
+          <button type="submit" class="primary" id="btn-search">检索</button>
+        </form>
+
+        <div class="chip-row" role="group" aria-label="预置条件">
+          <span class="chip-label">试试</span>
+          <button type="button" class="chip example" data-example="weather">天气</button>
+          <button type="button" class="chip example" data-example="nokey">无 Key</button>
+          <button type="button" class="chip example" data-example="news">新闻</button>
+        </div>
+
+        <div class="chip-row wrap" role="tablist" aria-label="分类">
+          <button type="button" class="chip is-on" role="tab" aria-selected="true" data-cat="all">全部</button>
+          <button type="button" class="chip" role="tab" aria-selected="false" data-cat="天气">天气</button>
+          <button type="button" class="chip" role="tab" aria-selected="false" data-cat="新闻">新闻</button>
+          <button type="button" class="chip" role="tab" aria-selected="false" data-cat="地图">地图</button>
+          <button type="button" class="chip" role="tab" aria-selected="false" data-cat="加密货币">加密货币</button>
+          <button type="button" class="chip" role="tab" aria-selected="false" data-cat="开发工具">开发工具</button>
+          <button type="button" class="chip" role="tab" aria-selected="false" data-cat="其他">其他</button>
+          <button type="button" class="chip fav-filter" id="btn-favs" aria-pressed="false">收藏</button>
+        </div>
+
+        <div class="meta-row">
+          <p id="result-meta" aria-live="polite">精选静态样例</p>
+          <label class="fmt">
+            <span>片段</span>
+            <select id="fmt" aria-label="起步片段格式">
+              <option value="fetch">fetch</option>
+              <option value="curl">curl</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="results" aria-labelledby="result-title">
+        <h2 id="result-title" class="sr-only">检索结果</h2>
+        <div id="cards" class="cards"></div>
+        <p id="empty" class="empty" hidden>没有匹配。换个关键词，或点「天气 / 无 Key / 新闻」。</p>
+      </section>
+    </main>
+
+    <footer class="foot">
+      灵感来自
+      <a href="https://x.com/daweifs/status/2088795914546917866" rel="noopener noreferrer">public-apis 书签</a>
+      与
+      <a href="https://github.com/public-apis/public-apis" rel="noopener noreferrer">public-apis/public-apis</a>
+      。本页是精选静态样例，不请求外网、不需要 API Key。
+    </footer>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "public-api-pad",
+      "title": "公开 API 速查垫",
+      "date": "2026-09-21",
+      "summary": "按分类搜公开 API，一键复制起步请求片段（本地精选样例）。",
+      "tags": ["api", "tool", "local"],
+      "source": {
+        "github": "https://github.com/public-apis/public-apis",
+        "note": "X bookmark daweifs on public-apis → local searchable starter pad"
+      }
+    },
+    {
       "slug": "pipeline-studio",
       "title": "Pipeline Studio",
       "date": "2026-09-15",
