@@ -416,8 +416,17 @@ function loadFavs() {
   }
 }
 
-function saveFavs(favs) {
-  localStorage.setItem(FAV_KEY, JSON.stringify([...favs]));
+function saveFavs(next) {
+  try {
+    localStorage.setItem(FAV_KEY, JSON.stringify([...next]));
+  } catch {
+    /* ignore quota / private-mode */
+  }
+}
+
+function eventEl(event) {
+  const target = event.target;
+  return target instanceof Element ? target : target?.parentElement;
 }
 
 let favs = loadFavs();
@@ -443,13 +452,32 @@ function snippet(api) {
   return `// ${api.name} · ${api.needsKey ? "替换 YOUR_API_KEY" : "无需 Key"}\nfetch("${url}"${headerBlock})\n  .then((r) => r.json())\n  .then((data) => console.log(data));`;
 }
 
+function extraTerms(api) {
+  const byCat = {
+    天气: "预报 气候 climate forecast",
+    新闻: "头条 资讯 headlines",
+    地图: "地理编码 坐标 geocode maps",
+    加密货币: "比特币 bitcoin btc eth 行情 crypto",
+    开发工具: "http rest mock debug",
+    其他: "开放数据 open data",
+  };
+  return byCat[api.cat] || "";
+}
+
 function matches(api) {
+  if (state.onlyFavs) return favs.has(api.id);
   if (state.cat !== "all" && api.cat !== state.cat) return false;
   if (state.noKey && api.needsKey) return false;
-  if (state.onlyFavs && !favs.has(api.id)) return false;
   const q = state.query.trim().toLowerCase();
   if (!q) return true;
-  const hay = [api.name, api.use, api.cat, api.auth, api.needsKey ? "需要key" : "无key 无需key"]
+  const hay = [
+    api.name,
+    api.use,
+    api.cat,
+    api.auth,
+    extraTerms(api),
+    api.needsKey ? "需要key" : "无key 无需key",
+  ]
     .join(" ")
     .toLowerCase();
   return hay.includes(q);
@@ -530,6 +558,9 @@ function render() {
     ? `收藏 ${list.length} / ${favs.size}`
     : `${list.length} 条${state.noKey ? " · 无 Key" : ""}${state.cat !== "all" ? ` · ${state.cat}` : ""}`;
   els.empty.hidden = list.length > 0;
+  els.empty.textContent = state.onlyFavs
+    ? "还没有收藏。先点卡片上的「收藏」，再回来看清单。"
+    : "没有匹配。换个关键词，或点「天气 / 无 Key / 新闻」。";
   els.cards.innerHTML = list
     .map((api) => {
       const fav = favs.has(api.id);
@@ -568,22 +599,36 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;");
 }
 
+function setFavFilter(on) {
+  state.onlyFavs = on;
+  els.favs.setAttribute("aria-pressed", String(on));
+  els.favs.classList.toggle("is-on", on);
+}
+
+function toggleFav(id) {
+  if (!id) return;
+  if (favs.has(id)) favs.delete(id);
+  else favs.add(id);
+  saveFavs(favs);
+  render();
+  toast(favs.has(id) ? "已收藏" : "已取消收藏");
+}
+
 function applyExample(key) {
   if (key === "weather") {
     state.noKey = false;
-    state.onlyFavs = false;
-    els.favs.setAttribute("aria-pressed", "false");
+    setFavFilter(false);
     els.q.value = "";
     state.query = "";
     setCat("天气");
   } else if (key === "news") {
     state.noKey = false;
-    state.onlyFavs = false;
-    els.favs.setAttribute("aria-pressed", "false");
+    setFavFilter(false);
     els.q.value = "";
     state.query = "";
     setCat("新闻");
   } else if (key === "nokey") {
+    setFavFilter(false);
     state.noKey = !state.noKey;
     syncExamples();
   }
@@ -614,9 +659,13 @@ els.examples.forEach((btn) => {
 });
 
 els.favs.addEventListener("click", () => {
-  state.onlyFavs = !state.onlyFavs;
-  els.favs.setAttribute("aria-pressed", String(state.onlyFavs));
-  els.favs.classList.toggle("is-on", state.onlyFavs);
+  setFavFilter(!state.onlyFavs);
+  if (state.onlyFavs) {
+    state.noKey = false;
+    state.query = "";
+    els.q.value = "";
+    setCat("all");
+  }
   render();
 });
 
@@ -628,19 +677,19 @@ els.fmt.addEventListener("change", () => {
 });
 
 els.cards.addEventListener("click", async (event) => {
-  const favBtn = event.target.closest("[data-fav]");
+  const el = eventEl(event);
+  if (!el) return;
+
+  const favBtn = el.closest("[data-fav]");
   if (favBtn) {
+    event.preventDefault();
     event.stopPropagation();
-    const id = favBtn.dataset.fav;
-    if (favs.has(id)) favs.delete(id);
-    else favs.add(id);
-    saveFavs(favs);
-    render();
+    toggleFav(favBtn.dataset.fav);
     return;
   }
 
-  const copyBtn = event.target.closest("[data-copy]");
-  const card = event.target.closest("[data-id]");
+  const copyBtn = el.closest("[data-copy]");
+  const card = el.closest("[data-id]");
   if (!card) return;
   const api = APIS.find((item) => item.id === card.dataset.id);
   if (!api) return;
@@ -649,8 +698,10 @@ els.cards.addEventListener("click", async (event) => {
 
 els.cards.addEventListener("keydown", async (event) => {
   if (event.key !== "Enter" && event.key !== " ") return;
-  const card = event.target.closest("[data-id]");
-  if (!card || event.target.closest("button")) return;
+  const el = eventEl(event);
+  if (!el) return;
+  const card = el.closest("[data-id]");
+  if (!card || el.closest("button")) return;
   event.preventDefault();
   const api = APIS.find((item) => item.id === card.dataset.id);
   if (api) await copyApi(api);
