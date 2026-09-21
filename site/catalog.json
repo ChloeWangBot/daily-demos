@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "lead-search-brief",
+      "title": "获客搜索简报",
+      "date": "2026-09-22",
+      "summary": "描述产品和客户，生成可复制的多平台搜索词、私信草稿和下一步清单。",
+      "tags": ["leads", "search", "local"],
+      "source": {
+        "github": "https://github.com/ChloeWangBot/daily-demos",
+        "note": "X bookmark yaohui12138 on one-person lead search → local query and outreach brief"
+      }
+    },
+    {
       "slug": "public-api-pad",
       "title": "公开 API 速查垫",
       "date": "2026-09-21",
