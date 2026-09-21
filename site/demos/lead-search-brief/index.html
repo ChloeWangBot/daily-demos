@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN" translate="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>获客搜索简报 · Daily Demos</title>
+    <meta
+      name="description"
+      content="描述产品和目标客户，在本地生成可复制的多平台搜索词、私信草稿和下一步清单。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 返回画廊</a>
+      <div class="brand">
+        <p class="kicker">本地工具 · 2026-09-22</p>
+        <h1>获客搜索简报</h1>
+      </div>
+      <p class="badge">本地生成 · 不上传</p>
+    </header>
+
+    <main>
+      <p class="purpose">描述你的产品，复制多平台搜索词和私信草稿。</p>
+
+      <section class="panel" aria-labelledby="form-title">
+        <div class="panel-head">
+          <h2 id="form-title">你在卖什么</h2>
+          <p>写一行产品或细分市场，再生成。目标客户和地区可以留空。</p>
+        </div>
+
+        <form id="brief-form" novalidate>
+          <label class="field" for="product">
+            <span>产品 / 细分市场</span>
+            <textarea
+              id="product"
+              name="product"
+              rows="4"
+              required
+              maxlength="400"
+              spellcheck="false"
+              placeholder="例如：给独立开发者用的订阅记账工具，帮一人公司看清每月订阅收入"
+            ></textarea>
+          </label>
+          <p id="product-error" class="field-error" role="alert" hidden>先写一行你的产品或细分市场。</p>
+
+          <div class="option-grid">
+            <label class="field" for="customer">
+              <span>目标客户（可选）</span>
+              <input
+                id="customer"
+                name="customer"
+                type="text"
+                maxlength="40"
+                autocomplete="off"
+                placeholder="例如：一人公司创始人"
+              />
+            </label>
+            <label class="field" for="geo">
+              <span>地区 / 语言（可选）</span>
+              <input
+                id="geo"
+                name="geo"
+                type="text"
+                maxlength="40"
+                autocomplete="off"
+                placeholder="例如：中国 / 英文"
+              />
+            </label>
+          </div>
+
+          <button class="primary" id="generate" type="submit">生成搜索词和私信</button>
+
+          <div class="chip-row" role="group" aria-label="示例">
+            <span class="chip-label">试试</span>
+            <button type="button" class="chip" data-example="billing">订阅记账</button>
+            <button type="button" class="chip" data-example="booking">预约排班</button>
+          </div>
+          <p class="local-note">在这台浏览器里生成，输入不会离开本页。</p>
+        </form>
+      </section>
+
+      <section id="results" class="results" hidden></section>
+    </main>
+
+    <footer class="foot">
+      灵感来自
+      <a href="https://x.com/yaohui12138/status/2099855037828841598" rel="noopener noreferrer">一人公司精准找客户</a>
+      。搜索词和私信都在本地拼好，不连接外部获客产品，也不外发你的输入。
+    </footer>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
