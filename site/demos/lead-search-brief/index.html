@@ -37,7 +37,7 @@
           <p>写一行产品或细分市场，再生成。目标客户和地区可以留空。</p>
         </div>
 
-        <form id="brief-form">
+        <form id="brief-form" novalidate>
           <label class="field" for="product">
             <span>产品 / 细分市场</span>
             <textarea
@@ -50,7 +50,7 @@
               placeholder="例如：给独立开发者用的订阅记账工具，帮一人公司看清每月订阅收入"
             ></textarea>
           </label>
-          <p id="product-error" class="field-error" hidden>先写一行你的产品或细分市场。</p>
+          <p id="product-error" class="field-error" role="alert" hidden>先写一行你的产品或细分市场。</p>
 
           <div class="option-grid">
             <label class="field" for="customer">
