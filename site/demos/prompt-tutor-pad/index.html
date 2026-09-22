@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN" translate="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>无限私教提示词垫 · Daily Demos</title>
+    <meta
+      name="description"
+      content="选一项技能、填两个空，立刻复制一份从零教学的私教提示词。本地生成，不上传、不需要登录。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 返回画廊</a>
+      <div class="brand">
+        <p class="kicker">本地工具 · 2026-09-23</p>
+        <h1>无限私教提示词垫</h1>
+      </div>
+      <p class="badge">静态生成 · 不发外网</p>
+    </header>
+
+    <main>
+      <p class="purpose">选一项技能，复制一份从零教学的私教提示词</p>
+
+      <section class="panel" aria-labelledby="pick-title">
+        <div class="panel-head">
+          <h2 id="pick-title">选技能</h2>
+          <p id="skill-blurb">点一下技能就会生成。水平和场景可以留空。</p>
+        </div>
+
+        <div class="chip-row wrap" role="radiogroup" aria-label="技能">
+          <button type="button" class="chip" role="radio" aria-checked="false" data-skill="spoken-en">英语口语</button>
+          <button type="button" class="chip" role="radio" aria-checked="false" data-skill="excel-pivot">Excel透视表</button>
+          <button type="button" class="chip" role="radio" aria-checked="false" data-skill="fe-debug">前端调试</button>
+          <button type="button" class="chip" role="radio" aria-checked="false" data-skill="money-start">理财入门</button>
+          <button type="button" class="chip" role="radio" aria-checked="false" data-skill="sql-start">SQL入门</button>
+          <button type="button" class="chip" role="radio" aria-checked="false" data-skill="prose-edit">写作润色</button>
+          <button type="button" class="chip" role="radio" aria-checked="false" data-skill="interview">面试准备</button>
+          <button type="button" class="chip" role="radio" aria-checked="false" data-skill="photo-frame">摄影构图</button>
+        </div>
+
+        <form id="builder">
+          <div class="fields">
+            <label>
+              <span>目标水平</span>
+              <input id="level" name="level" type="text" maxlength="80" placeholder="例如：完全零基础" autocomplete="off" />
+            </label>
+            <label>
+              <span>具体场景</span>
+              <input id="scene" name="scene" type="text" maxlength="80" placeholder="例如：下周要用在工作里" autocomplete="off" />
+            </label>
+          </div>
+
+          <div class="chip-row wrap" role="radiogroup" aria-label="可用时间">
+            <span class="chip-label">可用时间</span>
+            <button type="button" class="chip is-on" role="radio" aria-checked="true" data-time="每天 15 分钟">每天 15 分钟</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-time="每天 30 分钟">每天 30 分钟</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-time="周末 2 小时">周末 2 小时</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-time="45 分钟速成">45 分钟速成</button>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="primary" id="btn-build">生成私教提示词</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel result" aria-labelledby="out-title">
+        <div class="panel-head">
+          <h2 id="out-title">提示词</h2>
+          <p id="out-meta">先点一个技能，完整提示词会出现在这里。</p>
+        </div>
+        <label class="sr-only" for="prompt">生成的私教提示词</label>
+        <textarea
+          id="prompt"
+          readonly
+          spellcheck="false"
+          placeholder="先点一个技能。生成之后可以一键复制，贴到任何对话式助手里使用。"
+        ></textarea>
+        <div class="actions">
+          <button type="button" class="primary" id="btn-copy" disabled>复制提示词</button>
+          <button type="button" class="ghost" id="btn-swap" disabled>换一版</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      灵感来自
+      <a href="https://x.com/CoderDaMing/status/2085969007367377083" rel="noopener noreferrer">无限私教书签</a>
+      。本页的提示词是原创模板，只在浏览器里拼装，不会上传，也不需要登录。
+    </footer>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
