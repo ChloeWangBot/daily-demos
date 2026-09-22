@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "prompt-tutor-pad",
+      "title": "无限私教提示词垫",
+      "date": "2026-09-23",
+      "summary": "选一项技能、填两个空，立刻复制一份从零教学的私教提示词。",
+      "tags": ["prompt", "tutor", "tool", "local"],
+      "source": {
+        "github": "https://x.com/CoderDaMing/status/2085969007367377083",
+        "note": "X bookmark 无限私教提示词 → local tutor-prompt builder (original templates)"
+      }
+    },
+    {
       "slug": "public-api-pad",
       "title": "公开 API 速查垫",
       "date": "2026-09-21",
