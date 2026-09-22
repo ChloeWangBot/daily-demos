@@ -512,25 +512,30 @@ function boot() {
     if (scroll) els.prompt.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
+  function copyViaSelection(text) {
+    const area = els.prompt;
+    const wasReadOnly = area.hasAttribute("readonly");
+    if (wasReadOnly) area.removeAttribute("readonly");
+    area.focus();
+    area.select();
+    area.setSelectionRange(0, text.length);
+    let ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch {
+      ok = false;
+    }
+    if (wasReadOnly) area.setAttribute("readonly", "");
+    return ok;
+  }
+
   async function copyText(text) {
+    if (copyViaSelection(text)) return true;
     try {
       await navigator.clipboard.writeText(text);
       return true;
     } catch {
-      try {
-        const area = document.createElement("textarea");
-        area.value = text;
-        area.setAttribute("readonly", "");
-        area.style.position = "fixed";
-        area.style.left = "-9999px";
-        document.body.append(area);
-        area.select();
-        const ok = document.execCommand("copy");
-        area.remove();
-        return ok;
-      } catch {
-        return false;
-      }
+      return false;
     }
   }
 
