@@ -316,6 +316,10 @@ th {
   font-size: 13px;
 }
 
+.cell-label {
+  display: none;
+}
+
 pre {
   margin: 8px 0 0;
   padding: 12px 14px;
@@ -426,27 +430,19 @@ pre {
 
   td {
     border: 0;
-    padding: 4px 6px 4px 72px;
-    position: relative;
+    padding: 6px 4px;
     min-height: 28px;
   }
 
-  td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 6px;
-    top: 4px;
-    width: 60px;
+  .cell-label {
+    display: block;
     color: var(--mute);
     font-size: 12px;
+    margin-bottom: 2px;
   }
 
-  td[data-label="操作"] {
-    padding-left: 6px;
-  }
-
-  td[data-label="操作"]::before {
-    content: none;
+  td:last-child .cell-label {
+    display: none;
   }
 }
 

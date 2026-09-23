@@ -455,11 +455,11 @@ function init() {
             ? `<span class="who missing">未指定</span>`
             : `<span class="who">${escapeHtml(item.owner.name)}</span> <span class="how">${escapeHtml(item.owner.how)}</span>`;
         return `<tr>
-          <td data-label="类型"><span class="kind kind-${item.kind === "决策" ? "decision" : "todo"}">${item.kind}</span></td>
-          <td data-label="事项">${escapeHtml(item.content)}</td>
-          <td data-label="负责人">${who}</td>
-          <td data-label="下一步">${escapeHtml(item.next)}</td>
-          <td data-label="操作"><button type="button" class="ghost tiny" data-remove="${index}">去掉</button></td>
+          <td><span class="cell-label">类型</span><span class="kind kind-${item.kind === "决策" ? "decision" : "todo"}">${item.kind}</span></td>
+          <td><span class="cell-label">事项</span>${escapeHtml(item.content)}</td>
+          <td><span class="cell-label">负责人</span>${who}</td>
+          <td><span class="cell-label">下一步</span>${escapeHtml(item.next)}</td>
+          <td><span class="cell-label">操作</span><button type="button" class="ghost tiny" data-remove="${index}">去掉</button></td>
         </tr>`;
       })
       .join("");
