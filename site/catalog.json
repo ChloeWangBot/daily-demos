@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "meeting-action-pad",
+      "title": "会议行动垫",
+      "date": "2026-09-24",
+      "summary": "贴上散乱的会议或研究笔记，抽出决策、待办、负责人和下一步，并复制成 Markdown 简报。",
+      "tags": ["meeting", "notes", "tool"],
+      "source": {
+        "github": "https://github.com/ChloeWangBot/daily-demos",
+        "note": "X bookmark https://x.com/Kay2289123/status/2096266461618807089 — messy notes to an action table with owners"
+      }
+    },
+    {
       "slug": "public-api-pad",
       "title": "公开 API 速查垫",
       "date": "2026-09-21",

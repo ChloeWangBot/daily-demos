@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN" translate="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>会议行动垫 · Daily Demos</title>
+    <meta
+      name="description"
+      content="把散乱的会议或研究笔记收成决策、待办、负责人和下一步，并复制成 Markdown 简报。只在浏览器里用规则提取。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 返回画廊</a>
+      <div class="brand">
+        <p class="kicker">本地工具 · 2026-09-24</p>
+        <h1>会议行动垫</h1>
+      </div>
+      <p class="badge">不上传 · 不调用模型</p>
+    </header>
+
+    <main>
+      <p class="purpose">把散乱的会议笔记收成决策、待办和负责人。</p>
+
+      <section class="panel" aria-labelledby="pad-title">
+        <div class="panel-head">
+          <h2 id="pad-title">笔记</h2>
+          <p>贴上会议纪要、研究记录或聊完的结论。规则会找「决定 / 请某人 / 截止」。</p>
+        </div>
+
+        <label class="sr-only" for="notes">会议或研究笔记</label>
+        <textarea
+          id="notes"
+          rows="12"
+          placeholder="把乱七八糟的纪要贴在这里。例如：决定搜索先回滚，截止下周三给结论。请林夏整理用户原声。@苏晚 周五前和财务对合同。"
+        ></textarea>
+        <p class="count" id="count">0 字</p>
+
+        <div class="actions">
+          <button type="button" class="primary" id="extract">提取行动项</button>
+          <button type="button" class="ghost" id="sample">填入示例纪要</button>
+          <button type="button" class="ghost" id="clear">清空</button>
+        </div>
+        <p class="hint">Ctrl / ⌘ + Enter 也能提取。笔记只留在这台浏览器里。</p>
+      </section>
+
+      <section class="panel result" id="result" hidden aria-live="polite">
+        <div class="result-head">
+          <div>
+            <h2>行动表</h2>
+            <p id="summary">等待提取。</p>
+          </div>
+          <button type="button" class="primary" id="copy" disabled>一键复制</button>
+        </div>
+
+        <div class="chip-row" id="filters" role="group" aria-label="筛选行动项"></div>
+
+        <div id="table-wrap"></div>
+        <p id="empty" class="empty" hidden></p>
+
+        <h3>Markdown 简报</h3>
+        <pre id="brief" tabindex="0"></pre>
+      </section>
+
+      <details class="rules">
+        <summary>这条垫子怎么判断</summary>
+        <ul>
+          <li>出现「决定 / 拍板 / 结论 / 先不做 / 回滚」时，记成决策。</li>
+          <li>出现「请 / 负责 / 待办 / 下一步 / @某人」时，记成待办。</li>
+          <li>「张三负责」「负责人：张三」算明确；「@张三」「请张三」「让张三」算推断。对不上就写未指定。</li>
+          <li>「周五前」「下周一会前」「10月8日」「截止…」会写进下一步。纯状态句，比如设备坏了，会跳过。</li>
+        </ul>
+      </details>
+    </main>
+
+    <footer class="foot">
+      灵感来自
+      <a href="https://x.com/Kay2289123/status/2096266461618807089" rel="noopener noreferrer">一条关于整理行动项的书签</a>
+      。本页用本地关键词规则复现「乱笔记 → 下一步」的流程，不请求网络，也不保存内容。
+    </footer>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
