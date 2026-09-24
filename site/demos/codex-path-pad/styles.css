@@ -226,18 +226,11 @@ h3 {
 }
 
 .action-bar {
-  position: sticky;
-  top: 0;
-  z-index: 4;
   display: flex;
   flex-wrap: wrap;
   gap: 8px 14px;
   align-items: center;
   margin: 12px 0 16px;
-  padding: 8px;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--bg) 90%, transparent);
-  backdrop-filter: blur(10px);
 }
 
 #progress {
@@ -248,12 +241,20 @@ h3 {
   line-height: 1.45;
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-  gap: 14px;
-  align-items: start;
+main {
+  display: flex;
+  flex-direction: column;
 }
+
+.layout {
+  display: contents;
+}
+
+.purpose { order: 1; }
+.stages { order: 2; }
+.action-bar { order: 3; }
+.result { order: 4; }
+.work { order: 5; }
 
 .work {
   display: grid;
@@ -422,13 +423,15 @@ a:focus-visible {
 }
 
 .result {
-  position: sticky;
-  top: 72px;
+  position: static;
 }
 
 .result-card {
-  max-height: calc(100vh - 88px);
-  overflow: auto;
+  scroll-margin-top: 16px;
+}
+
+#result-title {
+  scroll-margin-top: 16px;
 }
 
 .result-body,
@@ -512,20 +515,37 @@ a:focus-visible {
   color: var(--ok);
 }
 
-@media (max-width: 900px) {
-  .layout {
-    grid-template-columns: 1fr;
+.panel .primary {
+  margin-top: 12px;
+  width: 100%;
+}
+
+@media (min-width: 1100px) {
+  body {
+    padding-right: 440px;
   }
 
   .result {
-    position: static;
-    order: -1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 440px;
+    padding: 16px 16px 16px 0;
+    overflow: auto;
+    z-index: 2;
   }
 
-  .result-card {
-    max-height: none;
+  .result-head {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--card);
+    padding-bottom: 8px;
   }
+}
 
+@media (max-width: 900px) {
   .stages {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }

@@ -592,6 +592,7 @@ function init() {
   pasteEl.addEventListener("input", render);
 
   generateBtn.addEventListener("click", generate);
+  document.querySelector("#generate-bottom").addEventListener("click", generate);
 
   document.querySelector("#copy-stage").addEventListener("click", (event) => {
     if (!report) return;
