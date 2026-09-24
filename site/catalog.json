@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "codex-path-pad",
+      "title": "Codex 零到一路径垫",
+      "date": "2026-09-25",
+      "summary": "勾选 Annotate→Skill 走到哪一步，一键生成可复制的今日练习简报。",
+      "tags": ["codex", "checklist", "tool"],
+      "source": {
+        "url": "https://x.com/huoshan007/status/2084916064228626584",
+        "note": "X bookmark huoshan007 Codex path → local interactive practice pad"
+      }
+    },
+    {
       "slug": "public-api-pad",
       "title": "公开 API 速查垫",
       "date": "2026-09-21",
