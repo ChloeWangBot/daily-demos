@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN" translate="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Codex 零到一路径垫 · Daily Demos</title>
+    <meta
+      name="description"
+      content="勾选 Annotate 到 Skill 走到哪一步，一键生成可复制的今日练习简报。只在浏览器里运算，不上传内容。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 返回画廊</a>
+      <div class="brand">
+        <p class="kicker">练习垫 · 2026-09-25</p>
+        <h1>Codex 零到一路径垫</h1>
+      </div>
+      <p class="badge">本地生成 · 不上传</p>
+    </header>
+
+    <main>
+      <p class="purpose" id="purpose">勾选 Annotate 到 Skill 走到哪一步，一键生成可复制的今日练习简报。</p>
+
+      <div class="stages" id="stages" role="group" aria-label="六步路径"></div>
+
+      <div class="action-bar">
+        <button type="button" class="primary" id="generate">生成今日练习简报</button>
+        <p id="progress" aria-live="polite">还没勾选。可以直接生成起点简报。</p>
+      </div>
+
+      <div class="layout">
+        <div class="work">
+          <section class="panel" aria-labelledby="path-title">
+            <div class="panel-head">
+              <div>
+                <h2 id="path-title">六步路径</h2>
+                <p>点阶段或「我做到这了」，会把这一步和前面的步骤一并标上。再点最远的一步就退回；点更早的阶段会取消它后面的勾选。</p>
+              </div>
+              <button type="button" class="ghost" id="clear" disabled>清空进度</button>
+            </div>
+            <ol class="steps" id="steps"></ol>
+          </section>
+
+          <section class="panel" aria-labelledby="paste-title">
+            <div class="panel-head">
+              <div>
+                <h2 id="paste-title">手头的事 <span class="opt">可选</span></h2>
+                <p>贴上你正在改的东西。不填也会生成一份通用简报。</p>
+              </div>
+              <button type="button" class="ghost" id="fill-sample">填入示例</button>
+            </div>
+            <label class="sr-only" for="paste">手头正在做的事</label>
+            <textarea
+              id="paste"
+              rows="5"
+              placeholder="例如：我在改哪一处、现在错在哪、今天希望变成什么样、哪些地方不要动。"
+            ></textarea>
+          </section>
+        </div>
+
+        <aside class="result" aria-labelledby="result-title">
+          <div class="result-card">
+            <div class="result-head">
+              <h2 id="result-title" tabindex="-1">今日结果</h2>
+              <button type="button" class="ghost" id="copy-all" hidden>复制全部</button>
+            </div>
+            <p id="stale" class="stale" hidden>勾选或描述已改，再点一次「生成今日练习简报」才会更新。</p>
+            <p id="result-empty" class="empty-note">生成后的阶段、简报和三问自检会出现在这里，每段都能单独复制。</p>
+            <div id="result-body" hidden>
+              <section class="block">
+                <div class="block-head">
+                  <h3>当前阶段与下一步</h3>
+                  <button type="button" class="ghost" id="copy-stage">复制</button>
+                </div>
+                <div class="sheet" id="sheet-stage"></div>
+              </section>
+              <section class="block">
+                <div class="block-head">
+                  <h3>今日练习简报</h3>
+                  <button type="button" class="ghost" id="copy-brief">复制</button>
+                </div>
+                <div class="sheet" id="sheet-brief"></div>
+              </section>
+              <section class="block">
+                <div class="block-head">
+                  <h3>卡点自检</h3>
+                  <button type="button" class="ghost" id="copy-checks">复制</button>
+                </div>
+                <p class="check-kicker" id="check-kicker"></p>
+                <ul class="checks" id="check-list"></ul>
+              </section>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="foot">
+      路径灵感来自
+      <a href="https://x.com/huoshan007/status/2084916064228626584" rel="noopener noreferrer">一条 Codex 书签</a>
+      。本页用本地规则拼简报，不转载教程正文，也不上传你粘贴的内容。
+    </footer>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
