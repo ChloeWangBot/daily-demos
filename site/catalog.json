@@ -3,6 +3,18 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "grok-quota-pad",
+      "title": "Grok 额度卫生垫",
+      "date": "2026-09-28",
+      "summary": "勾选燃烧项和今天要停的项，30 秒内复制一份 Grok Bot 减支清单。",
+      "tags": ["quota", "tool", "local"],
+      "source": {
+        "url": "https://x.com/MaiYangAI/status/2098961066663580030",
+        "github": "https://github.com/ChloeWangBot/daily-demos",
+        "note": "X bookmark MaiYangAI on Grok Bot quota hygiene (看清、止损、底座减脂) → local cut-list pad"
+      }
+    },
+    {
       "slug": "public-api-pad",
       "title": "公开 API 速查垫",
       "date": "2026-09-21",
