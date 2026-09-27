@@ -127,11 +127,10 @@ h3 {
 }
 
 .purpose {
-  margin: 8px 0 14px;
+  margin: 0 0 14px;
   font-size: clamp(18px, 3.4vw, 24px);
   line-height: 1.35;
   color: var(--ink-soft);
-  max-width: 22em;
 }
 
 .action-bar {
@@ -350,7 +349,7 @@ h3 {
 .result-card {
   position: sticky;
   top: 12px;
-  max-height: calc(100vh - 24px);
+  max-height: calc(100vh - 108px);
   overflow: auto;
   padding: 16px;
 }

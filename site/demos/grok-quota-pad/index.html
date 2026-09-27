@@ -29,18 +29,18 @@
     </header>
 
     <main>
-      <p class="purpose" id="purpose">
-        30 秒内砍掉多余的 Grok Bot 花费，并复制一份今天能执行的行动清单。
-      </p>
-
-      <div class="action-bar">
-        <button type="button" class="primary" id="generate">生成减支清单</button>
-        <button type="button" class="ghost" id="reset">恢复示例</button>
-        <p id="progress" aria-live="polite">示例已勾好。直接生成，或先改下面的勾选。</p>
-      </div>
-
       <div class="layout">
         <div class="work">
+          <p class="purpose" id="purpose">
+            30 秒内砍掉多余的 Grok Bot 花费，并复制一份今天能执行的行动清单。
+          </p>
+
+          <div class="action-bar">
+            <button type="button" class="primary" id="generate">生成减支清单</button>
+            <button type="button" class="ghost" id="reset">恢复示例</button>
+            <p id="progress" aria-live="polite">示例已勾好。直接生成，或先改下面的勾选。</p>
+          </div>
+
           <section class="panel" aria-labelledby="setup-title">
             <div class="panel-head">
               <h2 id="setup-title">花费节奏</h2>
@@ -94,14 +94,6 @@
 
               <section class="block">
                 <div class="block-head">
-                  <h3>减支清单</h3>
-                  <button type="button" class="ghost" id="copy-cut">复制</button>
-                </div>
-                <div class="sheet" id="sheet-cut"></div>
-              </section>
-
-              <section class="block">
-                <div class="block-head">
                   <h3>接下来三步</h3>
                   <button type="button" class="ghost" id="copy-actions">复制</button>
                 </div>
@@ -114,6 +106,14 @@
                   <button type="button" class="ghost" id="copy-note">复制</button>
                 </div>
                 <p class="note" id="budget-note"></p>
+              </section>
+
+              <section class="block">
+                <div class="block-head">
+                  <h3>减支清单</h3>
+                  <button type="button" class="ghost" id="copy-cut">复制</button>
+                </div>
+                <div class="sheet" id="sheet-cut"></div>
               </section>
             </div>
           </div>
