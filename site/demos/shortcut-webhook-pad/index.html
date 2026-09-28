@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN" translate="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>快捷指令 Webhook 垫 · Daily Demos</title>
+    <meta
+      name="description"
+      content="选文字、截图链接或音频链接，填写字段后复制 Shortcuts 步骤和 JSON 请求体。只在本地生成，不发送 Webhook。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 返回画廊</a>
+      <div class="brand">
+        <p class="kicker">本地工具 · 2026-09-29</p>
+        <h1>快捷指令 Webhook 垫</h1>
+      </div>
+      <p class="badge">只生成文案 · 不发请求</p>
+    </header>
+
+    <main>
+      <p class="purpose">选触发类型、填字段，复制 Shortcuts 步骤和 JSON 请求体。</p>
+
+      <div class="hero-actions">
+        <button type="button" class="primary" id="generate">生成步骤与 JSON</button>
+        <button type="button" class="ghost" id="load-sample">载入示例</button>
+        <p class="status" id="status" aria-live="polite">示例已填好，直接点生成。</p>
+      </div>
+
+      <form class="panel" id="planner">
+        <div class="panel-head">
+          <h2>发给谁、发什么</h2>
+          <p>示例是「记账管家」记一笔午饭。改称呼和内容，就能换成别的 Bot。</p>
+        </div>
+
+        <fieldset class="triggers">
+          <legend>触发类型</legend>
+          <div class="seg" role="radiogroup" aria-label="触发类型">
+            <label class="seg-item">
+              <input type="radio" name="trigger" value="text" checked />
+              <span>文字</span>
+            </label>
+            <label class="seg-item">
+              <input type="radio" name="trigger" value="screenshot_url" />
+              <span>截图链接</span>
+            </label>
+            <label class="seg-item">
+              <input type="radio" name="trigger" value="audio_url" />
+              <span>音频链接</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="fields">
+          <label>
+            <span>Bot 称呼</span>
+            <input id="label" name="label" type="text" maxlength="40" autocomplete="off" value="记账管家" />
+          </label>
+          <label>
+            <span>分类标签</span>
+            <input id="category" name="category" type="text" maxlength="40" autocomplete="off" value="餐饮" />
+          </label>
+          <label class="span-2">
+            <span id="content-label">样例文字</span>
+            <input id="content" name="content" type="text" maxlength="240" autocomplete="off" value="午饭 38 元，咖啡加三明治" />
+          </label>
+        </div>
+
+        <fieldset class="extras">
+          <legend>附加字段</legend>
+          <p class="hint">勾选后写入 JSON。金额、分类、备注只是模板键，不限于记账。</p>
+          <div class="checks">
+            <label class="check">
+              <input type="checkbox" id="use-amount" checked />
+              <span>金额</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" id="use-category" checked />
+              <span>分类</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" id="use-note" checked />
+              <span>备注</span>
+            </label>
+          </div>
+          <div class="fields extra-fields">
+            <label id="amount-wrap">
+              <span>金额</span>
+              <input id="amount" name="amount" type="text" inputmode="decimal" maxlength="24" autocomplete="off" value="38" />
+            </label>
+            <label id="note-wrap">
+              <span>备注</span>
+              <input id="note" name="note" type="text" maxlength="80" autocomplete="off" value="公司附近" />
+            </label>
+          </div>
+        </fieldset>
+
+        <p class="keys" id="keys" aria-live="polite"></p>
+      </form>
+
+      <section class="output" id="output" aria-labelledby="output-title" hidden>
+        <h2 id="output-title" class="sr-only">生成结果</h2>
+        <article class="panel slip">
+          <div class="slip-head">
+            <h2>Shortcuts 步骤</h2>
+            <button type="button" class="ghost" id="copy-steps" disabled>复制步骤</button>
+          </div>
+          <ol id="steps"></ol>
+        </article>
+        <article class="panel slip">
+          <div class="slip-head">
+            <h2>JSON 请求体</h2>
+            <button type="button" class="ghost" id="copy-json" disabled>复制 JSON</button>
+          </div>
+          <pre id="json" tabindex="0"></pre>
+          <p class="hint" id="url-hint" hidden>内容不像 http(s) 链接。放进快捷指令前，换成手机能打开的地址。</p>
+        </article>
+      </section>
+
+      <p class="waiting" id="waiting">生成后，步骤和 JSON 会出现在这里，各有一个复制按钮。</p>
+    </main>
+
+    <footer class="foot">
+      灵感来自
+      <a href="https://x.com/cgnot996/status/2099526593731604696" rel="noopener noreferrer">Shortcuts + Grok Bot webhook</a>
+      。本页只在浏览器里拼步骤和 JSON，不会访问 Webhook，也不保存密钥。请在桌面端例程里自行复制 URL 与 key。
+    </footer>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

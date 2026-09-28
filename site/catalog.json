@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "shortcut-webhook-pad",
+      "title": "快捷指令 Webhook 垫",
+      "date": "2026-09-29",
+      "summary": "选触发类型、填字段，一键复制 Shortcuts 步骤与 JSON 请求体。",
+      "tags": ["shortcuts", "webhook", "tool"],
+      "source": {
+        "github": "https://x.com/cgnot996/status/2099526593731604696",
+        "note": "X bookmark on Shortcuts + Grok Bot webhook → local payload/step builder"
+      }
+    },
+    {
       "slug": "public-api-pad",
       "title": "公开 API 速查垫",
       "date": "2026-09-21",
