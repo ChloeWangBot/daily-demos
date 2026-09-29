@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "agent-split-pad",
+      "title": "浏览器任务分工垫",
+      "date": "2026-09-30",
+      "summary": "把浏览器任务拆成动作 agent 与思考·输入·看图，并复制一份分工计划。",
+      "tags": ["agent", "browser", "local"],
+      "source": {
+        "github": "https://github.com/vlad-terin/jev-use",
+        "note": "X bookmark @NFT_Chen on Codex + Jev split (https://x.com/NFT_Chen/status/2100911111327613104): Jev clicks/navigates/scrolls, Codex thinks/types/sees. jev-use is inspiration only and is not vendored."
+      }
+    },
+    {
       "slug": "public-api-pad",
       "title": "公开 API 速查垫",
       "date": "2026-09-21",
