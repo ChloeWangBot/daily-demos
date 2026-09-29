@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN" translate="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>浏览器任务分工垫 · Daily Demos</title>
+    <meta
+      name="description"
+      content="把浏览器任务拆成动作 agent 与思考·输入·看图，并复制一份可交接的分工计划。本地关键词规则，不需要 API Key。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 返回画廊</a>
+      <div class="brand">
+        <p class="kicker">本地工具 · 2026-09-30</p>
+        <h1>浏览器任务分工垫</h1>
+      </div>
+      <p class="badge">本地规则 · 不发外网</p>
+    </header>
+
+    <main>
+      <p class="purpose">把浏览器任务拆成快手动作，和需要思考、输入、看图的步骤。</p>
+
+      <section class="panel" aria-labelledby="task-title">
+        <h2 id="task-title" class="sr-only">输入任务</h2>
+        <form id="task-form">
+          <label for="task">浏览器任务</label>
+          <textarea
+            id="task"
+            name="task"
+            rows="5"
+            placeholder="一行一个步骤，或直接贴一整段。例如：打开登录页，输入账号密码，有验证码就看图填上，再点登录。"
+            autocomplete="off"
+            spellcheck="false"
+          ></textarea>
+          <div class="action-row">
+            <div class="chip-row" role="group" aria-label="示例任务">
+              <span class="chip-label">示例</span>
+              <button type="button" class="chip" data-sample="login">填表登录</button>
+              <button type="button" class="chip" data-sample="dashboard">扫一遍仪表盘</button>
+              <button type="button" class="chip" data-sample="compare">对比两个商品页</button>
+            </div>
+            <button type="submit" class="primary" id="btn-split">生成拆分</button>
+          </div>
+          <p class="hint" id="form-hint" role="status"></p>
+        </form>
+      </section>
+
+      <section class="result" id="result" hidden aria-labelledby="result-title">
+        <div class="result-head">
+          <div>
+            <h2 id="result-title">拆分计划</h2>
+            <p id="result-meta" aria-live="polite"></p>
+          </div>
+          <button type="button" class="primary" id="btn-copy">复制计划</button>
+        </div>
+        <p class="stale" id="stale" hidden>任务改过了，再点一次「生成拆分」才会按新内容重排。</p>
+        <ol id="steps" class="steps"></ol>
+        <p class="mark-hint">点每一步的标签可以改归属。复制出去的计划会跟着变。</p>
+        <h3>交接顺序</h3>
+        <ol id="blocks" class="blocks"></ol>
+        <h3>可复制文本</h3>
+        <pre id="plan" class="plan" tabindex="0"></pre>
+      </section>
+    </main>
+
+    <footer class="foot">
+      灵感来自
+      <a href="https://x.com/NFT_Chen/status/2100911111327613104" rel="noopener noreferrer">@NFT_Chen：Codex + Jev 分工</a>
+      —— Jev 负责点击、跳转、滚动，Codex 负责思考、输入和看图。
+      <a href="https://github.com/vlad-terin/jev-use" rel="noopener noreferrer">jev-use</a>
+      只作参考，没有嵌进本页。规则全部在浏览器本地运行。
+    </footer>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
