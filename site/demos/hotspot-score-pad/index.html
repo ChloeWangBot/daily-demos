@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN" translate="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>热点评分垫 · Daily Demos</title>
+    <meta
+      name="description"
+      content="贴上 3–8 条 AI 或新闻标题，在浏览器里评出新鲜度、新颖度和可执行性，并复制短名单。不联网。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 返回画廊</a>
+      <div class="brand">
+        <p class="kicker">本地启发式 · 2026-10-01</p>
+        <h1>热点评分垫</h1>
+      </div>
+      <p class="badge">不联网 · 规则可见</p>
+    </header>
+
+    <main>
+      <p class="purpose">贴上 3–8 条标题，一次评出新鲜度、新颖度和可执行性。</p>
+
+      <section class="panel" aria-labelledby="pad-title">
+        <div class="panel-head">
+          <h2 id="pad-title">标题</h2>
+          <p>一行一条。示例已填好，直接点「评分」即可。</p>
+        </div>
+
+        <label class="sr-only" for="headlines">标题，每行一条</label>
+        <textarea
+          id="headlines"
+          rows="6"
+          spellcheck="false"
+          placeholder="每行一条标题或一句话摘要"
+        >OpenAI 今日发布 GPT-5.4，API 已开放试用并下调输入价格
+Anthropic just launched Claude 4.6 — developers can apply for API access today
+英伟达 Rubin 芯片量产时间表曝光，云厂商本周开始锁单
+AMD published next-gen accelerator specs and starts sampling customers this week
+欧盟拟收紧通用人工智能模型备案，最晚下月征求意见
+为什么大模型总会幻觉：一篇回顾十年对齐研究的长文</textarea>
+
+        <div class="actions">
+          <button type="button" class="primary" id="btn-score">评分</button>
+          <button type="button" class="ghost" id="btn-reset">恢复示例</button>
+          <p id="count" class="count">6 条</p>
+        </div>
+        <p class="hint" id="hint">建议 3–8 条。Ctrl 或 ⌘ + Enter 也可以评分。</p>
+
+        <fieldset class="weights">
+          <legend>权重（可选）</legend>
+          <label class="weight">
+            <span>新鲜 <output id="out-fresh">40</output></span>
+            <input id="w-fresh" type="range" min="0" max="100" value="40" />
+          </label>
+          <label class="weight">
+            <span>新颖 <output id="out-novel">30</output></span>
+            <input id="w-novel" type="range" min="0" max="100" value="30" />
+          </label>
+          <label class="weight">
+            <span>可执行 <output id="w-action-out">30</output></span>
+            <input id="w-action" type="range" min="0" max="100" value="30" />
+          </label>
+        </fieldset>
+      </section>
+
+      <section id="results" class="results" hidden>
+        <div class="results-head">
+          <div>
+            <h2>排序结果</h2>
+            <p id="status" role="status">尚未评分</p>
+          </div>
+          <button type="button" class="primary copy" id="btn-copy">复制短名单</button>
+        </div>
+
+        <div class="cluster-row" id="clusters" aria-label="建议聚类"></div>
+        <ol class="ranked" id="ranked"></ol>
+
+        <h3 class="short-title">短名单</h3>
+        <pre id="shortlist" class="shortlist"></pre>
+
+        <details class="rules">
+          <summary>评分规则</summary>
+          <ul>
+            <li><b>新鲜</b>：今日、本周、today、this week 等时间词，加上发布、推出、曝光、launched。回顾、十年、长文会降权。</li>
+            <li><b>新颖</b>：和本批其他标题比，只出现一次的词越多越高。两条几乎一样时，这项会掉下去。</li>
+            <li><b>可执行</b>：API、试用、价格、申请、送测、锁单、征求意见这类能跟着做的词。纯观点长文降权。</li>
+            <li><b>聚类</b>：按词表归入模型发布、芯片算力、监管政策、开源工具、方法教程、观点长文。对不上的标成「其他」。</li>
+            <li>综合分是三项的加权平均。只看你贴进来的文字，不核对事实，也不访问网络。</li>
+          </ul>
+        </details>
+      </section>
+    </main>
+
+    <footer class="foot">
+      灵感来自
+      <a href="https://x.com/Khazix0918/status/2104729499070079003" rel="noopener noreferrer">AIHOT 书签</a>
+      与
+      <a href="https://github.com/KKKKhazix/AIHOT" rel="noopener noreferrer">KKKKhazix/AIHOT</a>
+      的评分、聚类思路。这一页是浏览器里的透明启发式，不抓取 AIHOT，也不调用它的接口。
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
