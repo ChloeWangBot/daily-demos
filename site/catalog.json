@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "hotspot-score-pad",
+      "title": "热点评分垫",
+      "date": "2026-10-01",
+      "summary": "贴上几条 AI 新闻标题，一次评出新鲜度、新颖度和可执行性，并复制短名单。",
+      "tags": ["news", "heuristic", "local"],
+      "source": {
+        "github": "https://github.com/KKKKhazix/AIHOT",
+        "note": "X bookmark Khazix0918 on AIHOT scoring/clustering → local headline score pad, no API"
+      }
+    },
+    {
       "slug": "public-api-pad",
       "title": "公开 API 速查垫",
       "date": "2026-09-21",
