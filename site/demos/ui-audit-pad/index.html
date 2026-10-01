@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN" translate="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UI 审计垫 · Daily Demos</title>
+    <meta
+      name="description"
+      content="粘贴一小段界面文案，或点一个画面类型，得到可复制的层级、热区、对比度、空状态和文案检查清单。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 返回画廊</a>
+      <div class="brand">
+        <p class="kicker">UI Audit Pad · 2026-10-02</p>
+        <h1>UI 审计垫</h1>
+      </div>
+      <p class="badge">本地规则 · 不发外网</p>
+    </header>
+
+    <main>
+      <p class="purpose">粘贴一小段界面文案，或点一个画面类型，三十秒内得到可复制的修复清单。</p>
+
+      <section class="panel" aria-labelledby="compose-title">
+        <div class="panel-head">
+          <h2 id="compose-title">待审计的界面</h2>
+          <p>点样例就能开审。想改数字，用「标题:」「主按钮:」「热区:」「对比:」这几行。</p>
+        </div>
+
+        <div class="chip-row wrap" role="group" aria-label="预置文案">
+          <span class="chip-label">样例</span>
+          <button type="button" class="chip example is-on" data-load="settings" aria-pressed="true">
+            中文 · 设置
+          </button>
+          <button type="button" class="chip example" data-load="onboarding" aria-pressed="false">
+            English · Onboarding
+          </button>
+        </div>
+
+        <div class="chip-row wrap" role="group" aria-label="画面类型">
+          <span class="chip-label">画面</span>
+          <button type="button" class="chip screen is-on" data-load="settings" data-screen="settings" aria-pressed="true">
+            设置
+          </button>
+          <button type="button" class="chip screen" data-load="onboarding" data-screen="onboarding" aria-pressed="false">
+            新手引导
+          </button>
+          <button type="button" class="chip screen" data-load="empty" data-screen="empty" aria-pressed="false">
+            空状态
+          </button>
+          <button type="button" class="chip screen" data-load="form" data-screen="form" aria-pressed="false">
+            表单
+          </button>
+        </div>
+
+        <div class="action-row">
+          <button type="button" class="primary" id="btn-audit">审计</button>
+          <p class="hint" id="hint">已载入「设置」样例。Ctrl + Enter 同样会审计。</p>
+        </div>
+
+        <label class="field-label" for="snippet">界面文案</label>
+        <textarea id="snippet" rows="9" spellcheck="false" aria-describedby="hint">画面: 设置
+标题: 通知
+说明: 选择哪些提醒可以发到这台设备。
+主按钮: 保存
+次按钮: 取消
+热区: 44pt
+对比: #1d1d1f / #ffffff
+对比: #8e8e93 / #f5f5f7
+字号: 标题 22 正文 17 辅助 13
+空状态: 还没有通知来源。
+空状态按钮: 添加来源</textarea>
+      </section>
+
+      <section class="sheet" aria-labelledby="sheet-title">
+        <div class="sheet-head">
+          <h2 id="sheet-title">检查清单</h2>
+          <button type="button" class="copy" id="btn-copy" hidden>复制修复清单</button>
+        </div>
+
+        <p class="placeholder" id="placeholder">点上方「审计」。清单会按未过、警告、通过排好。</p>
+
+        <div class="score" id="score" hidden>
+          <p class="readout" id="readout"></p>
+          <div class="stats" id="stats"></div>
+          <p class="stale" id="stale" hidden>文案已改，再点一次「审计」。</p>
+        </div>
+
+        <div class="chip-row wrap filters" id="filters" role="group" aria-label="按结果筛选" hidden>
+          <span class="chip-label">筛选</span>
+          <button type="button" class="chip is-on" data-filter="all" aria-pressed="true">全部</button>
+          <button type="button" class="chip" data-filter="fail" aria-pressed="false">未过</button>
+          <button type="button" class="chip" data-filter="warn" aria-pressed="false">警告</button>
+          <button type="button" class="chip" data-filter="pass" aria-pressed="false">通过</button>
+        </div>
+
+        <div id="list" class="list"></div>
+        <p class="filter-empty" id="filter-empty" hidden>这个筛选下没有条目。</p>
+
+        <details class="rules">
+          <summary>这 7 条规则怎么判</summary>
+          <ol>
+            <li>单一主操作：一个画面只强调一个主按钮。</li>
+            <li>标题层级：标题要短，字号逐级变小，相邻至少差 2pt。</li>
+            <li>最小热区：可点区域至少 44×44pt。标成 px 时按 1 倍屏幕估算。</li>
+            <li>文字对比：小于 18pt 的字，对比度按 4.5:1 计。</li>
+            <li>空状态或失败：要写原因，并给一个下一步。表单则看校验文案。</li>
+            <li>按钮说动作：用具体动词。次要操作保持短。</li>
+            <li>句子说人话：不写口号、黑话和感叹号。</li>
+          </ol>
+          <p>规则都在这个页面的脚本里，方便对照。它不是 Apple 官方审查器。</p>
+        </details>
+      </section>
+    </main>
+
+    <footer class="foot">
+      灵感来自
+      <a href="https://x.com/chengyongru/status/2099324192235868478" rel="noopener noreferrer">一条关于 Apple 人机界面指南的 X 书签</a>
+      与
+      <a href="https://developer.apple.com/design/" rel="noopener noreferrer">Apple Design</a>
+      。本页只跑本地清单，不抓取文档，也不请求接口。
+    </footer>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
