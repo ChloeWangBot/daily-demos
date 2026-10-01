@@ -3,6 +3,16 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "ui-audit-pad",
+      "title": "UI 审计垫",
+      "date": "2026-10-02",
+      "summary": "粘贴界面文案或点选画面类型，得到一份可复制的层级、热区、对比度、空状态和文案清单。",
+      "tags": ["design", "hig", "copy"],
+      "source": {
+        "note": "X bookmark chengyongru on Apple Human Interface Guidelines (https://x.com/chengyongru/status/2099324192235868478) and https://developer.apple.com/design/ — local checklist only, Apple docs are not scraped."
+      }
+    },
+    {
       "slug": "public-api-pad",
       "title": "公开 API 速查垫",
       "date": "2026-09-21",
