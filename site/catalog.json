@@ -3,6 +3,16 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "download-route-pad",
+      "title": "下载路线垫",
+      "date": "2026-10-05",
+      "summary": "贴上视频、播客或论文链接，得到提取路线和一份可复制的中文任务简报。",
+      "tags": ["download", "transcript", "local"],
+      "source": {
+        "note": "X bookmark KinGao476942 on Grok Bot「下载专家」(https://x.com/KinGao476942/status/2094449389070942309) — local route pad only, no scraping and no requests to the pasted links."
+      }
+    },
+    {
       "slug": "public-api-pad",
       "title": "公开 API 速查垫",
       "date": "2026-09-21",
