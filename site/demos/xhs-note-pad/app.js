@@ -633,22 +633,30 @@ function render() {
     .join("");
 }
 
+function placeLabel(where) {
+  const names = [];
+  if (where.includes("主题")) names.push("主题");
+  if (where.includes("受众")) names.push("受众");
+  if (where.some((item) => item.includes("标题"))) names.push("标题");
+  if (where.some((item) => item.includes("正文"))) names.push("正文");
+  return names.join("、");
+}
+
 function renderCheck(flags) {
   ui.check.hidden = false;
   ui.check.classList.toggle("is-hot", flags.length > 0);
   ui.check.classList.toggle("is-clear", flags.length === 0);
   if (!flags.length) {
     ui.checkCount.textContent = "通过";
-    ui.checkList.innerHTML = "<li>主题、受众和标题没有命中绝对化用语、疗效承诺或站外联系方式。</li>";
+    ui.checkList.innerHTML = "<li>主题、受众、标题和正文没有命中绝对化用语、疗效承诺或站外联系方式。</li>";
     return;
   }
   ui.checkCount.textContent = `命中 ${flags.length} 处`;
   ui.checkList.innerHTML = flags
-    .map((flag) => {
-      const where = flag.where.slice(0, 6).join("、");
-      const more = flag.where.length > 6 ? "等" : "";
-      return `<li><strong>${escapeHtml(where)}${more}</strong>里的「${escapeHtml(flag.word)}」：${escapeHtml(flag.reason)}</li>`;
-    })
+    .map(
+      (flag) =>
+        `<li><strong>${escapeHtml(placeLabel(flag.where))}</strong>里的「${escapeHtml(flag.word)}」：${escapeHtml(flag.reason)}</li>`,
+    )
     .join("");
 }
 
