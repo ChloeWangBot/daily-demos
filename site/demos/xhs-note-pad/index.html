@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN" translate="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>小红书笔记垫 · Daily Demos</title>
+    <meta
+      name="description"
+      content="填一个主题，本地生成 3 条小红书笔记草稿：标题、开头、提纲、话题和封面大字。不联网、不调用模型。"
+    />
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="back" href="../../">← 返回画廊</a>
+      <div class="brand">
+        <p class="kicker">本地模板 · 2026-10-06</p>
+        <h1>小红书笔记垫</h1>
+      </div>
+      <p class="badge">不联网 · 不用模型</p>
+    </header>
+
+    <main>
+      <p class="purpose">填一个主题，本地生成 3 条小红书笔记草稿</p>
+
+      <form class="panel" id="compose">
+        <div class="topic-row">
+          <label class="field" for="topic">
+            <span>主题或产品</span>
+            <input
+              id="topic"
+              name="topic"
+              type="text"
+              placeholder="例如：空气炸锅"
+              autocomplete="off"
+              enterkeyhint="done"
+              maxlength="60"
+            />
+          </label>
+          <button type="submit" class="primary" id="btn-generate">生成</button>
+        </div>
+        <p class="form-msg" id="form-msg" role="status"></p>
+
+        <label class="field" for="audience">
+          <span>写给谁</span>
+          <input
+            id="audience"
+            name="audience"
+            type="text"
+            placeholder="例如：租房上班族"
+            autocomplete="off"
+            enterkeyhint="done"
+            maxlength="24"
+          />
+        </label>
+
+        <fieldset class="styles">
+          <legend>笔记风格</legend>
+          <div class="style-row" role="radiogroup" aria-label="笔记风格">
+            <button type="button" class="chip is-on" role="radio" aria-checked="true" data-style="list">
+              干货清单
+            </button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-style="experience">
+              亲测体验
+            </button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-style="pitfall">
+              避坑提醒
+            </button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-style="compare">
+              对比测评
+            </button>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="button" class="example" id="btn-example">试一个例子</button>
+          <p class="hint">换风格或改受众，草稿会马上重写。</p>
+        </div>
+      </form>
+
+      <section class="check" id="check" aria-labelledby="check-title" hidden>
+        <div class="check-head">
+          <h2 id="check-title">发前自检</h2>
+          <p id="check-count"></p>
+        </div>
+        <ul id="check-list"></ul>
+      </section>
+
+      <section class="results" id="results" aria-labelledby="result-title" hidden>
+        <div class="result-bar">
+          <h2 id="result-title">3 条草稿</h2>
+          <button type="button" class="ghost" id="btn-copy-all">复制全部</button>
+        </div>
+        <div id="drafts" class="drafts"></div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      灵感来自
+      <a href="https://x.com/AndyL5cc/status/2100900528482062714" rel="noopener noreferrer"
+        >AndyL5cc：用编程助手批量写小红书</a
+      >
+      。本页只用本地模板拼草稿，不请求网络，也不调用模型。发出去之前，把【】换成你自己的例子。
+    </footer>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

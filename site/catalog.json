@@ -3,6 +3,17 @@
   "tagline": "One GitHub bookmark. One agent. One morning link.",
   "demos": [
     {
+      "slug": "xhs-note-pad",
+      "title": "小红书笔记垫",
+      "date": "2026-10-06",
+      "summary": "填主题和受众，本地生成 3 条可复制的小红书笔记草稿，并标出风险用语。",
+      "tags": ["xiaohongshu", "writing", "local"],
+      "source": {
+        "github": "https://github.com/ChloeWangBot/daily-demos",
+        "note": "X bookmark https://x.com/AndyL5cc/status/2100900528482062714 — batching 小红书 notes with a coding agent, turned into a local template pad"
+      }
+    },
+    {
       "slug": "public-api-pad",
       "title": "公开 API 速查垫",
       "date": "2026-09-21",
